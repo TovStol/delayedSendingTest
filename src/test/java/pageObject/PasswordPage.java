@@ -2,7 +2,6 @@ package pageObject;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PasswordPage {
     String passwordField = "[id='passp-field-passwd']";

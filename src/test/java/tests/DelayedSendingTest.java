@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pageObject.*;
 
-import static java.lang.Thread.sleep;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class DelayedSendingTest {
     @BeforeAll
@@ -14,18 +14,27 @@ public class DelayedSendingTest {
 
     }
 
-
     @Test
     void delayedSending() {
-        String login = "n.surnametest";    //getSittings.xml
+        String login = "n.surnametest";
         String password = "!N.surnametest!";
+        String address = "n.surnametest2@yandex.ru";
+        String subject = "Тестовое письмо";
+        String textLetter = "В чужбине свято наблюдаю\n" +
+                "Родной обычай старины:\n" +
+                "На волю птичку выпускаю\n" +
+                "При светлом празднике весны.\n" +
+                "Я стал доступен утешенью;\n" +
+                "За что на бога мне роптать,\n" +
+                "Когда хоть одному творенью\n" +
+                "Я мог свободу даровать!\n";
+        String delayTime = "23:30";
         MainPage mainPage = new MainPage();
         LoginPage loginPage = new LoginPage();
         PasswordPage passwordPage = new PasswordPage();
         UserSideBarMainPage userSideBarMainPage = new UserSideBarMainPage();
-        NewLetterPage writeNewLetterPage = new NewLetterPage();
         InboxPage inboxPage = new InboxPage();
-
+        NewLetterPage newLetterPage = new NewLetterPage();
 
         mainPage
                 .smokeCheckPage()
@@ -40,14 +49,23 @@ public class DelayedSendingTest {
         userSideBarMainPage
                 .smokeCheckPage()
                 .clickMailButton();
-        //switchTo().window(1);
+        switchTo().window(1);
         inboxPage
                 .smokeCheckPage()
                 .clickWriteButton();
-       // writeNewLetterPage
-              //  .smokeCheckPage()
-               // .fillFieldAdr("address")
-              //  .fillFieldSubject("subject")
-              //  .fillMessage("message");
+        newLetterPage
+                .smokeCheckPage()
+                .fillFieldAdr(address)
+                .fillFieldSubject(subject)
+                .fillMessage(textLetter)
+                .clickDelayedSendButton()
+                    .smokeCheckPage()
+                    .clickDateTimeSelectButton()
+                        .smokeCheckPage()
+                        .setDateTime(delayTime)
+                        .clickDateTimeSaveButton()
+                .checkDelayedTime(delayTime)
+                .clickSendEmailButton();
+        new SuccessfulSendingWindowPage().checkSuccesSendMail(delayTime);
     }
 }
