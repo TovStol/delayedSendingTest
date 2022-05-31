@@ -5,9 +5,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class WriteNewLetterPage {
+public class NewLetterPage {
     static String SetTime = "23:30";
-    static String toWriteButton = "[href='#compose']";
+
     static String newLetterButton = ".ComposePopup-Content";
     static String addressInputField = ".MultipleAddressesDesktop-Field.ComposeYabblesField";
     static String email = "n.surnametest2@yandex.ru";
@@ -32,7 +32,7 @@ public class WriteNewLetterPage {
 
 
     public void writeNewLetter() {
-        $(toWriteButton).click();
+
         $(newLetterButton).shouldHave(text("Новое письмо"));
         $$(addressInputField).first().lastChild().sendKeys(email);
         $(topicInputField).setValue("Тестовое письмо");
@@ -50,15 +50,12 @@ public class WriteNewLetterPage {
 
     }
 
-    public WriteNewLetterPage smokeCheckPage(){
-        //проверка отображения пары основных элементов
-        return this;
-    }
-    public WriteNewLetterPage fillFieldAdr(String address){
+
+    public NewLetterPage fillFieldAdr(String address){
         return this;
     }
 
-    public WriteNewLetterPage fillFieldSubject(String subject){
+    public NewLetterPage fillFieldSubject(String subject){
         return this;
     }
 
@@ -67,7 +64,7 @@ public class WriteNewLetterPage {
      * @param message - текст сообщения
      *
      */
-    public WriteNewLetterPage fillMessage(String message){
+    public NewLetterPage fillMessage(String message){
         return this;
     }
 }

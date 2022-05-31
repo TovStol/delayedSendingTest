@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pageObject.*;
 
-import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.Thread.sleep;
 
 public class DelayedSendingTest {
@@ -24,7 +23,7 @@ public class DelayedSendingTest {
         LoginPage loginPage = new LoginPage();
         PasswordPage passwordPage = new PasswordPage();
         UserSideBarMainPage userSideBarMainPage = new UserSideBarMainPage();
-        WriteNewLetterPage writeNewLetterPage = new WriteNewLetterPage();
+        NewLetterPage writeNewLetterPage = new NewLetterPage();
         InboxPage inboxPage = new InboxPage();
 
 
@@ -41,16 +40,14 @@ public class DelayedSendingTest {
         userSideBarMainPage
                 .smokeCheckPage()
                 .clickMailButton();
-        switchTo().window(1);
-    /*    inboxPage
+        //switchTo().window(1);
+        inboxPage
                 .smokeCheckPage()
                 .clickWriteButton();
-        writeNewLetterPage
-                .smokeCheckPage()
-                .fillFieldAdr("address")
-                .fillFieldSubject("subject")
-                .fillMessage("message");
-
-     */
+       // writeNewLetterPage
+              //  .smokeCheckPage()
+               // .fillFieldAdr("address")
+              //  .fillFieldSubject("subject")
+              //  .fillMessage("message");
     }
 }

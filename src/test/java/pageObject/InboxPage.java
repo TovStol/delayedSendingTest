@@ -1,12 +1,18 @@
 package pageObject;
 
-public class InboxPage {
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 
-    public InboxPage smokeCheckPage(){
-    return this;
+
+public class InboxPage {
+    static String toWriteButton = "[href='#compose']";
+
+    public InboxPage smokeCheckPage() {
+        $(toWriteButton).shouldBe(visible);
+        return this;
     }
 
-    public void clickWriteButton(){
-
+    public void clickWriteButton() {
+        $(toWriteButton).click();
     }
 }

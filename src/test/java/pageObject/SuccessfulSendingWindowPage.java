@@ -9,7 +9,7 @@ public class SuccessfulSendingWindowPage {
 
    public void succesSendWin(){
         $(popupHasBeSentWindow).shouldHave(text("Письмо будет отправлено"));
-        $(popupHasBeSentWindow).shouldHave(text(WriteNewLetterPage.SetTime));
+        $(popupHasBeSentWindow).shouldHave(text(NewLetterPage.SetTime));
         $(popupHasBeSentWindow).shouldHave(text("До тех пор оно будет лежать в папке \"Исходящие\""));
     }
 }
